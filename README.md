@@ -31,7 +31,7 @@ Update User (Partial) : PATCH /users/:id
 Delete User : DELETE /users/:id
 
 #Installation :
-1.Clone the repository: ....
+1.Clone the repository: ## https://github.com/nikitaahire302/User_API.git
 
 2.Install dependencies: npm install
 
