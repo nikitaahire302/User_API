@@ -223,7 +223,6 @@ app.get("/users", (req, res) => {
   const resultUsers = users.slice(startIndex, endIndex);
 
   res.json({
-    API_ID: req.API_ID,
     page: pageNumber,
     limit: limitNumber,
     totalUsers: users.length,
@@ -238,7 +237,7 @@ app.get("/users/:id", (req, res) => {
     return res
       .status(404)
       .json({ message: "User not found", API_ID: req.API_ID });
-  res.json({ API_ID: req.API_ID, user });
+  res.json({user});
 });
 
 // POST - Create a new user
@@ -246,7 +245,7 @@ app.post("/users", (req, res) => {
   console.log("Received new user data:", req.body); // Log the incoming user data
   const newUser = { id: users.length + 1, ...req.body };
   users.push(newUser);
-  res.status(201).json({ API_ID: req.API_ID, newUser });
+  res.status(201).json({newUser});
 });
 
 // PUT - Update an existing user
@@ -262,7 +261,7 @@ app.put("/users/:id", (req, res) => {
   user.gender = req.body.gender;
   user.mail_id = req.body.mail_id;
   user.job_title = req.body.job_title;
-  res.json({ API_ID: req.API_ID, user });
+  res.json({user});
 });
 
 // PATCH - Update specific fields of a user
@@ -278,7 +277,7 @@ app.patch("/users/:id", (req, res) => {
   if (req.body.gender) user.gender = req.body.gender;
   if (req.body.mail_id) user.mail_id = req.body.mail_id;
   if (req.body.job_title) user.job_title = req.body.job_title;
-  res.json({ API_ID: req.API_ID, user });
+  res.json({user});
 });
 
 // DELETE - Remove a user by ID
@@ -290,7 +289,7 @@ app.delete("/users/:id", (req, res) => {
       .json({ message: "User not found", API_ID: req.API_ID });
 
   users.splice(userIndex, 1);
-  res.status(204).json({ message: "User deleted", API_ID: req.API_ID });
+  res.status(204).json({ message: "User deleted"});
 });
 
 // Start the server
